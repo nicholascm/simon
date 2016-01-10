@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Dr. Simon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <body ng-app="games">
+  <div ng-controller="simonController as simon">
+    <div class="container">
+      <div class="row text-center">
+        <h1 class="col-xs-12 header text-center">Dr. Simon</h1>
+      </div>
+      <div class="info">
+        <div class="row card-header center-block">
+          <h4 class="text-center"> 
+          {{simon.statusMessage}}
+        </h4>
+          <div class="text-center">
+            <p> Level: {{simon.sequence.length}}</p>
+            <p ng-hide="simon.compareArrays(simon.sequence,simon.playerSequence)">You missed one!</p>
+          </div>
+        </div>
+      </div>
+      <div class="row card center-block" ng-class= "simon.getCrazy ? 'animated pulse infinite' : ''">
+
+        <div class="col-xs-12 text-center green-{{simon.one}}" ng-click="simon.appendChoice(1, simon.playerSequence)">
+          <i id="buttons" class="fa fa-ambulance" ng-class= "simon.getCrazy ? 'fa-spin' : ''"> </i>
+        </div>
+
+        <div class="col-xs-4 text-center blue-{{simon.two}}" ng-click="simon.appendChoice(2, simon.playerSequence)">
+          <i id="buttons" class="fa fa-stethoscope" ng-class= "simon.getCrazy ? 'fa-spin' : ''"> </i>
+        </div>
+        <div class="col-xs-4 text-center">
+          <h4>Dr. Simon</h4>
+          <button class="btn btn-success" ng-show="simon.buttons.startAvailable" ng-click="simon.checkMoves()">START</button>
+          <button class="btn btn-primary" class="btn btn-primary" ng-click="simon.reset('user')">RESET</button>
+          <br>
+        </div>
+        <div class="col-xs-4 yellow-{{simon.three}}" ng-click="simon.appendChoice(3, simon.playerSequence)">
+          <i ng-class= "simon.getCrazy ? 'fa-spin' : ''" id="buttons" class="fa fa-user-md"> </i>
+        </div>
+
+        <div class="col-xs-12 text-center red-{{simon.four}}" ng-click="simon.appendChoice(4, simon.playerSequence)">
+          <i id="buttons" class="fa fa-heartbeat" ng-class= "simon.getCrazy ? 'fa-spin' : ''"> </i>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="row card center-block text-center">
+          <input type="checkbox" ng-model="simon.strictMode"> Strict Mode  </input> 
+          <input type="checkbox" ng-model="simon.getCrazy"> Get Crazy</input>
+          <!--<input type="checkbox" ng-model="simon.soundsOn">Sounds</input> -->
+        </div>
+      </div>
+
+</body>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>
